@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AbsoluteFill,
   useCurrentFrame,
   interpolate,
 } from "remotion";
+import { loadCairoFont } from "./load-fonts";
 
-// ✅ هذا المكون فقط لاختبار الخط العربي
 export const FontTest: React.FC = () => {
   const frame = useCurrentFrame();
+
+  // ✅ تحميل الخط عند بدء الكومبوزيشن
+  useEffect(() => {
+    loadCairoFont();
+  }, []);
 
   const opacity = interpolate(frame, [0, 20], [0, 1], {
     extrapolateRight: "clamp",
@@ -28,7 +33,7 @@ export const FontTest: React.FC = () => {
         gap: 40,
       }}
     >
-      {/* اختبار 1: خط Cairo من Google */}
+      {/* اختبار 1: عنوان كبير */}
       <div
         style={{
           opacity,
@@ -45,7 +50,7 @@ export const FontTest: React.FC = () => {
         مرحباً بكم في قناتنا
       </div>
 
-      {/* اختبار 2: جملة طويلة */}
+      {/* اختبار 2: ترجمة */}
       <div
         style={{
           opacity,
@@ -66,7 +71,7 @@ export const FontTest: React.FC = () => {
         الذكاء الاصطناعي يغير العالم في عام 2025
       </div>
 
-      {/* اختبار 3: حروف منفصلة وكلمات صعبة */}
+      {/* اختبار 3: نص تحفيزي */}
       <div
         style={{
           opacity,
@@ -81,7 +86,6 @@ export const FontTest: React.FC = () => {
         اشترك الآن 🔔 ولا تنسَ التفعيل
       </div>
 
-      {/* اسم الخط المستخدم */}
       <div
         style={{
           position: "absolute",
